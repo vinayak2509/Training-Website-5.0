@@ -22,14 +22,7 @@ const UserAdmin = () => {
     const fetchAboutMe = async () => {
       try {
         const response = await fetch(
-          "https://training-website-5-0-backend.onrender.com/api/about",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          }
+          "https://training-website-5-0-backend.onrender.com/api/about"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
