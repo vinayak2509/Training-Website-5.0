@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://training-website-5-0-backend.onrender.com/api/login",
+        `${import.meta.env.VITE_BACKEND_URL}/login`,
         {
           method: "POST",
           headers: {

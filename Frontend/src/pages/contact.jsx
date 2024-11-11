@@ -29,7 +29,7 @@ const Contact = () => {
 
     try {
       const response = await fetch(
-        "https://training-website-5-0-backend.onrender.com/api/contact",
+        `${import.meta.env.VITE_BACKEND_URL}/contact`,
         {
           method: "POST",
           headers: {

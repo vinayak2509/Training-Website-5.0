@@ -21,7 +21,7 @@ const SignUp = () => {
 
     try {
       const response = await fetch(
-        "https://training-website-5-0-backend.onrender.com/api/signup",
+        `${import.meta.env.VITE_BACKEND_URL}/signup`,
         {
           method: "POST",
           headers: {

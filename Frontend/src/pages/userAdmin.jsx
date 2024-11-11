@@ -22,7 +22,7 @@ const UserAdmin = () => {
     const fetchAboutMe = async () => {
       try {
         const response = await fetch(
-          "https://training-website-5-0-backend.onrender.com/api/about"
+          `${import.meta.env.VITE_BACKEND_URL}/about`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -55,7 +55,7 @@ const UserAdmin = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://training-website-5-0-backend.onrender.com/api/about",
+        `${import.meta.env.VITE_BACKEND_URL}/about`,
         {
           method: "POST",
           headers: {

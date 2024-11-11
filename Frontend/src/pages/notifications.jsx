@@ -8,7 +8,7 @@ const Notification = () => {
     const fetchNotifications = async () => {
       try {
         const response = await fetch(
-          "https://training-website-5-0-backend.onrender.com/api/contact"
+          `${import.meta.env.VITE_BACKEND_URL}/contact`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch notifications");
