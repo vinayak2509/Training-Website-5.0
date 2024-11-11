@@ -29,7 +29,7 @@ const UserUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { newEmail, newPassword } = user;
+    const { email, newEmail, newPassword } = user;
 
     try {
       const response = await fetch(
@@ -39,7 +39,7 @@ const UserUpdate = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ newEmail, newPassword }),
+          body: JSON.stringify({ email, newEmail, newPassword }),
         }
       );
 
@@ -65,7 +65,7 @@ const UserUpdate = () => {
       {error && <div className="error-tooltip">{error}</div>}
       {message && <div className="success-message">{message}</div>}
 
-      <form className="form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="form-row">
           <label htmlFor="email" className="form-label">
             Current Email

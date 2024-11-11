@@ -4,8 +4,7 @@ const User = require("../models/user");
 const router = express.Router();
 
 router.put("/update", async (req, res) => {
-  const { newEmail, newPassword } = req.body;
-  const { email } = req.user;
+  const { email, newEmail, newPassword } = req.body;
 
   try {
     const user = await User.findOne({ email });
