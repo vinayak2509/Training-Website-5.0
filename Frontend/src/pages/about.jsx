@@ -10,9 +10,7 @@ const AboutMe = () => {
   useEffect(() => {
     const fetchAboutMe = async () => {
       try {
-        const response = await fetch(
-          "https://training-website-5-0-backend.onrender.com/api/about"
-        );
+        const response = await fetch("/api/about");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
