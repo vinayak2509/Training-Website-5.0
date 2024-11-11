@@ -6,12 +6,13 @@ const AboutMe = () => {
   const [aboutMe, setAboutMe] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const BASE_URL = process.env.API_KEY;
 
   useEffect(() => {
     const fetchAboutMe = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/about`);
+        const response = await fetch(
+          "https://training-website-5-0-backend.onrender.com/api/about"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
