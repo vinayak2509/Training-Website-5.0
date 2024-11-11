@@ -7,6 +7,7 @@ const userRoutes = require("./routes/user");
 const aboutRoutes = require("./routes/about");
 const signUpRoutes = require("./routes/signUp");
 const notificationsRoutes = require("./routes/notifications");
+const userUpdateRoutes = require("./routes/userUpdate");
 
 const app = express();
 const PORT = 5000;
@@ -32,6 +33,7 @@ app.use("/api", userRoutes);
 app.use("/api", aboutRoutes);
 app.use("/api", signUpRoutes);
 app.use("/api", notificationsRoutes);
+app.use("/api", userUpdateRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
