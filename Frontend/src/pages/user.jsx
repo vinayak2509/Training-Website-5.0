@@ -1,35 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const UpdateUserDetails = () => {
-  const [formData, setFormData] = useState({
+const UserUpdate = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
+    newEmail: "",
+    newPassword: "",
   });
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const loggedInUser = sessionStorage.getItem("user");
+    if (!loggedInUser) {
+      navigate("/login");
+    } else {
+      const userData = JSON.parse(loggedInUser);
+      setUser({ ...user, email: userData.email });
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setUser({ ...user, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
-
-    // Validate passwords match
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    setLoading(true);
+    const { newEmail, newPassword } = user;
 
     try {
       const response = await fetch(
@@ -38,74 +38,79 @@ const UpdateUserDetails = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`, // Assuming token is stored in localStorage
           },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
+          body: JSON.stringify({ newEmail, newPassword }),
         }
       );
 
       const data = await response.json();
-
       if (response.ok) {
-        setSuccess(data.message);
+        setMessage(data.message);
+        if (newEmail) {
+          const updatedUser = JSON.parse(sessionStorage.getItem("user"));
+          updatedUser.email = newEmail;
+          sessionStorage.setItem("user", JSON.stringify(updatedUser));
+        }
       } else {
-        setError(data.message || "An error occurred");
+        setError(data.message);
       }
-    } catch (err) {
+    } catch (error) {
       setError("An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
     <div>
+      <h1>Update Profile</h1>
+      {error && <div className="error-tooltip">{error}</div>}
+      {message && <div className="success-message">{message}</div>}
+
       <form className="form" onSubmit={handleSubmit}>
-        <h1 className="form-title">Update Email and Password</h1>
-        <div>
-          <label className="form-label">Email</label>
+        <div className="form-row">
+          <label htmlFor="email" className="form-label">
+            Current Email
+          </label>
           <input
             type="email"
+            className="form-input"
+            id="email"
             name="email"
-            className="form-input"
-            value={formData.email}
-            onChange={handleChange}
-            required
+            value={user.email}
+            disabled
           />
         </div>
-        <div>
-          <label className="form-label">Password</label>
+        <div className="form-row">
+          <label htmlFor="newEmail" className="form-label">
+            New Email
+          </label>
+          <input
+            type="email"
+            className="form-input"
+            id="newEmail"
+            name="newEmail"
+            value={user.newEmail}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-row">
+          <label htmlFor="newPassword" className="form-label">
+            New Password
+          </label>
           <input
             type="password"
-            name="password"
             className="form-input"
-            value={formData.password}
+            id="newPassword"
+            name="newPassword"
+            value={user.newPassword}
             onChange={handleChange}
-            required
           />
         </div>
-        <div>
-          <label className="form-label">Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            className="form-input"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        {error && <div className="error">{error}</div>}
-        {success && <div className="success">{success}</div>}
-        <button className="btn-submit" type="submit" disabled={loading}>
-          {loading ? "Updating..." : "Update"}
+        <button type="submit" className="btn-submit">
+          Update
         </button>
       </form>
     </div>
   );
 };
 
-export default UpdateUserDetails;
+export default UserUpdate;
