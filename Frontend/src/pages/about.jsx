@@ -10,7 +10,7 @@ const AboutMe = () => {
   useEffect(() => {
     const fetchAboutMe = async () => {
       try {
-        const response = await fetch("/api/about");
+        const response = await fetch("/about");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
