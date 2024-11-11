@@ -8,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     let i = 0;
     const textTypingEffect = () => {
-      if (i < text.length - 1) {
+      if (i < text.length) {
         setGreet((prev) => prev + text[i]);
         i++;
         setTimeout(textTypingEffect, 50);
