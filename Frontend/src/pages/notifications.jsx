@@ -7,7 +7,9 @@ const Notification = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/contact");
+        const response = await fetch(
+          "https://training-website-5-0-backend.onrender.com/api/contact"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch notifications");
         }

@@ -21,7 +21,9 @@ const UserAdmin = () => {
   useEffect(() => {
     const fetchAboutMe = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/about");
+        const response = await fetch(
+          "https://training-website-5-0-backend.onrender.com/api/about"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
