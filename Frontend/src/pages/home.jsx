@@ -14,9 +14,8 @@ const Home = () => {
         setTimeout(textTypingEffect, 50);
       }
     };
-    if (i < text.length) {
-      textTypingEffect();
-    }
+
+    textTypingEffect();
 
     return () => {
       i = text.length;
@@ -27,7 +26,7 @@ const Home = () => {
     <div className="greeting">
       <h1 className="heading">{greet}</h1>
       <a href="/about" className="home-link">
-        <button className="home-btn">{"Lets Get Started >"}</button>
+        <button className="home-btn">{"Let's Get Started >"}</button>
       </a>
     </div>
   );
