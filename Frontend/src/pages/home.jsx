@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div className="greeting">
-      <h1>{greet}</h1>
+      <h1 className="heading">{greet}</h1>
       <a href="/about" className="home-link">
         <button className="home-btn">{"Lets Get Started >"}</button>
       </a>

@@ -9,6 +9,10 @@
 h1 {
   font-size: 350%;
 }
+.heading {
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
 .home-btn {
   background-color: #3f8e00;
   border: none;
