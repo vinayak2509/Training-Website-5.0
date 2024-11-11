@@ -22,7 +22,14 @@ const UserAdmin = () => {
     const fetchAboutMe = async () => {
       try {
         const response = await fetch(
-          "https://training-website-5-0-backend.onrender.com/api/about"
+          "https://training-website-5-0-backend.onrender.com/api/about",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -54,7 +61,16 @@ const UserAdmin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/about");
+      const response = await fetch(
+        "https://training-website-5-0-backend.onrender.com/api/about",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
