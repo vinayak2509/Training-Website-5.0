@@ -3,12 +3,12 @@ import "./CSS/home.css";
 
 const Home = () => {
   const [greet, setGreet] = useState("");
-  const text = "Hello! Welcome to My Website!";
+  const text = "Heello! Welcome to My Website!";
 
   useEffect(() => {
     let i = 0;
     const textTypingEffect = () => {
-      if (i < text.length) {
+      if (i < text.length - 1) {
         setGreet((prev) => prev + text[i]);
         i++;
         setTimeout(textTypingEffect, 50);
