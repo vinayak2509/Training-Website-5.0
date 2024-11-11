@@ -65,7 +65,7 @@ const UserUpdate = () => {
       {error && <div className="error-tooltip">{error}</div>}
       {message && <div className="success-message">{message}</div>}
 
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <div className="form-row">
           <label htmlFor="email" className="form-label">
             Current Email
